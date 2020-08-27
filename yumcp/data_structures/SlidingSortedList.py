@@ -12,13 +12,13 @@ class SlidingSortedList:
         if not self.maxheap:
             raise IndexError
         heappush(self.minheap, self.pivot)
-        self.pivot = heappop(self.maxheap)
+        self.pivot = -heappop(self.maxheap)
         self.pos += 1
 
     def _decrement(self):
         if not self.minheap:
             raise IndexError
-        heappush(self.maxheap, self.pivot)
+        heappush(self.maxheap, -self.pivot)
         self.pivot = heappop(self.minheap)
         self.pos -= 1
 
@@ -35,4 +35,4 @@ class SlidingSortedList:
             heappush(self.minheap, item)
             self.pos += 1
         else:
-            heappush(self.maxheap, item)
+            heappush(self.maxheap, -item)
